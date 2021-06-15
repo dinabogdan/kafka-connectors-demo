@@ -1,0 +1,26 @@
+{
+    "name": "product.connector.1",
+    "config": {
+      "name": "product.connector.1",
+      "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+      "timestamp.column.name": "LastModifiedDate",
+      "dialect.name": "OracleDatabaseDialect",
+      "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+      "connection.password": "productcatalogpasswd",
+      "query": "select * from product_aggregate_vw",
+      "transforms": "createKey",
+      "timestamp.delay.interval.ms": "-10800000",
+      "transforms.AddNamespace.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+      "table.types": "VIEW",
+      "mode": "timestamp",
+      "topic.prefix": "products.1",
+      "transforms.AddKeyNamespace.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Key",
+      "connection.user": "product_catalog",
+      "transforms.createKey.fields": "Key",
+      "poll.interval.ms": "101",
+      "numeric.mapping": "best_fit",
+      "connection.url": "jdbc:oracle:thin:@myxedb:1521/XE",
+      "connection.attempts": "100",
+      "connection.backoff.ms": "300000"
+    }
+  }
