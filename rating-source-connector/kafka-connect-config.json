@@ -1,0 +1,22 @@
+{
+    "name": "rating.outbox.source.connector",
+	  "config": {
+		"name": "rating.outbox.source.connector",
+		"connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+		"timestamp.column.name": "created_at",
+		"quote.sql.identifiers": "never",
+		"dialect.name": "PostgreSqlDatabaseDialect",
+		"connection.password": "postgres",
+		"query": "select payload, created_at from outbox",
+		"mode": "timestamp",
+		"topic.prefix": "ratings.1",
+		"connection.user": "postgres",
+		"poll.interval.ms": "100",
+		"connection.url": "jdbc:postgresql://localhost:5432/postgres",
+		"transforms": "ReplaceField, ExtractField",
+		"transforms.ReplaceField.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+		"transforms.ReplaceField.blacklist": "created_at",
+		"transforms.ExtractField.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+		"transforms.ExtractField.field": "payload"
+	}
+}
